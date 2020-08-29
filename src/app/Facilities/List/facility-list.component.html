@@ -7,7 +7,7 @@
                 {{ facility.name }}
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>This facility has {{ facility.seats }} seats available</p>
+        <p>This facility has <s>{{ facility.seats }}</s> seats available</p>
         <p class="success" *ngIf="facility.isAvailable">This facility is available for booking.</p>
         <p class="danger" *ngIf="!facility.isAvailable">This facility is not available for booking.</p>
     </mat-expansion-panel>
