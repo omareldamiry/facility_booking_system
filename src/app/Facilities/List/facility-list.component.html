@@ -8,7 +8,7 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
         <p>This facility has {{ facility.seats }} seats available</p>
-        <p color="#EE0202" *ngIf="facility.isAvailable">This facility is available for booking.</p>
-        <p color="$mat-red" *ngIf="!facility.isAvailable">This facility is not available for booking.</p>
+        <p class="success" *ngIf="facility.isAvailable">This facility is available for booking.</p>
+        <p class="danger" *ngIf="!facility.isAvailable">This facility is not available for booking.</p>
     </mat-expansion-panel>
 </mat-accordion>
