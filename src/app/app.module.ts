@@ -5,10 +5,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FacilityCreateComponent } from './Facilities/Creation/facility-create.component';
-import { FacilitiesService } from './Facilities/facilities.service';
+import { FacilityListComponent } from './Facilities/List/facility-list.component';
 import { HeaderComponent } from './Header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   declarations: [
     AppComponent,
     FacilityCreateComponent,
+    FacilityListComponent,
     HeaderComponent
   ],
   imports: [
@@ -31,7 +33,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatCardModule,
     MatButtonModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
