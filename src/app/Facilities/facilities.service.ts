@@ -4,17 +4,17 @@ import { Facility } from './facility.model';
 
 @Injectable({providedIn: 'root'})
 export class FacilitiesService {
-    private faciliies: Facility[] = [];
+    private facilities: Facility[] = [];
     
     constructor() {}
 
     getFacilities() {
-        return this.faciliies;
+        return this.facilities;
     }
     
     addFacility(facility: Facility) {
-        this.faciliies.push(facility);
+        this.facilities.push(facility);
 
-        console.log(this.faciliies);
+        console.log(this.facilities);
     }
 }
