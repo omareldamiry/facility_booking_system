@@ -1,3 +1,9 @@
 <mat-toolbar color="primary">
-    <span>{{ title }}</span>
+    <span><a  routerLink="/">{{ title }}</a></span>
+    <span class="spacer"></span>
+    <ul>
+        <li>
+            <a mat-stroked-button routerLink="/facility/create" routerLinkActive="mat-accent">Create</a>
+        </li>
+    </ul>
 </mat-toolbar>

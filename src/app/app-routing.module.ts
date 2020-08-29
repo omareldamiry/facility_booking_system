@@ -6,9 +6,8 @@ import { FacilityListComponent } from './Facilities/List/facility-list.component
 @NgModule({
     imports: [
         RouterModule.forRoot([
-            { path: '', component: FacilityCreateComponent },
-            { path: 'facility/create', component: FacilityCreateComponent },
-            { path: 'facility/list', component: FacilityListComponent },
+            { path: '', component: FacilityListComponent },
+            { path: 'facility/create', component: FacilityCreateComponent }
         ])
     ],
 

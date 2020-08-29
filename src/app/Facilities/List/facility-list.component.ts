@@ -17,5 +17,6 @@ export class FacilityListComponent implements OnInit{
     ngOnInit() {
         
         this.facilities = this.facilitiesService.getFacilities();
+        console.log(this.facilities);
     }
 }

@@ -26,8 +26,6 @@ export class FacilitiesService {
     addFacility(facility: Facility) {
         this.facilities.push(facility);
 
-        console.log(this.facilities);
-
-        this.router.navigate(['facility/list']);
+        this.router.navigate(['/']);
     }
 }
