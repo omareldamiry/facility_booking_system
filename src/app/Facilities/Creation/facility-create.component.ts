@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Facility } from '../facility.model';
+import { FacilitiesService } from '../facilities.service';
 
 @Component({
     selector: 'app-facility-create',
@@ -12,6 +13,10 @@ import { Facility } from '../facility.model';
 export class FacilityCreateComponent implements OnInit {
     form: FormGroup;
     facility: Facility;
+
+    constructor(
+        private facilitiesService: FacilitiesService
+    ) {}
 
     ngOnInit() {
         this.form = new FormGroup({
@@ -36,9 +41,7 @@ export class FacilityCreateComponent implements OnInit {
             isAvailable: true
         };
 
-        console.log(this.facility);
-
-        // Insert functionality here
+        this.facilitiesService.addFacility(this.facility);
 
     }
 }

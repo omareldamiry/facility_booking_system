@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FacilityCreateComponent } from './Facilities/Creation/facility-create.component';
+import { FacilitiesService } from './Facilities/facilities.service';
 import { HeaderComponent } from './Header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
