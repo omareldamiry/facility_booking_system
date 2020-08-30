@@ -59,6 +59,13 @@ export class FacilitiesService {
 
     }
 
+    setAvailability(id: string, avail: Boolean) {
+        this.http.patch(BACKEND_URL + id, { availability: avail })
+        .subscribe(responseData => {
+
+        });
+    }
+
     deleteFacility(id: String) {
         
         return this.http.delete(BACKEND_URL + id);

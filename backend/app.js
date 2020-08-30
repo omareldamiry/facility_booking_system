@@ -69,6 +69,19 @@ app.post('/api/facilities', (req, res, next) => {
 
 });
 
+//? Modifying Facility's availability
+app.patch('/api/facilities/:id', (req, res) => {
+    const id = req.params.id;
+    const avail = req.body.availability;
+
+    Facility.findByIdAndUpdate(id, { isAvailable: avail })
+    .then(result => {
+        res.status(200).json({
+            message: 'Facility availability updated!'
+        });
+    });
+});
+
 //? Deleting facility by id
 app.delete('/api/facilities/:id', (req, res) => {
     const id = req.params.id;

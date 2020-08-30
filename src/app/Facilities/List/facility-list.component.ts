@@ -37,6 +37,12 @@ export class FacilityListComponent implements OnInit, OnDestroy{
         });
     }
 
+    onToggle(id: string, avail: boolean) {
+        this.facilities.find(value => value.id == id)
+        .isAvailable = avail;        
+        this.facilitiesService.setAvailability(id, avail);
+    }
+
     ngOnDestroy() {
         this.facilitiesSub.unsubscribe();
     }

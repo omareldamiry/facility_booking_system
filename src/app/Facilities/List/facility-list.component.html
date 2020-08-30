@@ -14,6 +14,7 @@
 
         <mat-action-row>
             <button mat-button color="warn" (click)="onDelete(facility.id)">DELETE</button>
+            <button mat-button (click)="onToggle(facility.id, !facility.isAvailable)">TOGGLE</button>
         </mat-action-row>
     </mat-expansion-panel>
 </mat-accordion>
