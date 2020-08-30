@@ -4,14 +4,20 @@
     <mat-expansion-panel *ngFor="let facility of facilities">
         <mat-expansion-panel-header>
             <mat-panel-title>
-                {{ facility.name }}
+                <b>{{ facility.name }}</b>
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>This facility has <b>{{ facility.seats }}</b> seats available</p>
+
+        <p>This facility has <b>{{ facility.seats }}</b> seats.</p>
         <p class="success" *ngIf="facility.isAvailable">This facility is available for booking.</p>
         <p class="danger" *ngIf="!facility.isAvailable">This facility is not available for booking.</p>
+
+        <mat-action-row>
+            <button mat-button color="warn">DELETE</button>
+        </mat-action-row>
     </mat-expansion-panel>
 </mat-accordion>
-<mat-card *ngIf="facilities.length == 0">
-    <p class="empty">No facilities.</p>
+<mat-card *ngIf="facilities.length == 0 || isLoading">
+    <mat-spinner [diameter]="25"></mat-spinner>
+    <p class="empty" *ngIf="!isLoading">No facilities.</p>
 </mat-card>

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Facility } from '../facility.model';
 import { FacilitiesService } from '../facilities.service';
-import { Subscription } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 
 @Component({
     selector: 'app-facility-list',
@@ -9,8 +9,9 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./facility-list.component.css']
 })
 
-export class FacilityListComponent implements OnInit{
+export class FacilityListComponent implements OnInit, OnDestroy{
     facilities: Facility[] = [];
+    isLoading = false;
     private facilitiesSub: Subscription;
 
     constructor(
@@ -18,10 +19,16 @@ export class FacilityListComponent implements OnInit{
     ) {}
 
     ngOnInit() {
+        this.isLoading = true;
         this.facilities = this.facilitiesService.getFacilities();
-        this.facilitiesSub = this.facilitiesService.getFacilityUpdateistener()
+        this.facilitiesSub = this.facilitiesService.getFacilityUpdateListener()
         .subscribe(facilities => {
-            this.facilities = facilities;
+            this.isLoading = false;
+            this.facilities = facilities; 
         });
+    }
+
+    ngOnDestroy() {
+        this.facilitiesSub.unsubscribe();
     }
 }

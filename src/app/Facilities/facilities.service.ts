@@ -36,7 +36,7 @@ export class FacilitiesService {
         return this.facilities;
     }
 
-    getFacilityUpdateistener() {
+    getFacilityUpdateListener() {
         return this.facilitiesUpdated.asObservable();
     }
     
