@@ -35,7 +35,6 @@ export class FacilityCreateComponent implements OnInit {
         }
 
         this.facility = {
-            id: null,
             name: this.form.value.name,
             seats: this.form.value.seats,
             isAvailable: true

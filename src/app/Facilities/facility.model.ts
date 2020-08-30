@@ -1,5 +1,5 @@
 export interface Facility {
-    id: string;
+    id?: string;
     name: string;
     seats: number;
     isAvailable: boolean;

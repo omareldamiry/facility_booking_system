@@ -69,4 +69,16 @@ app.post('/api/facilities', (req, res, next) => {
 
 });
 
+//? Deleting facility by id
+app.delete('/api/facilities/:id', (req, res) => {
+    const id = req.params.id;
+
+    Facility.deleteOne({ _id: id })
+    .then(result => {
+        res.status(200).json({
+            message: 'Facility deleted!'
+        });
+    });
+});
+
 module.exports = app;

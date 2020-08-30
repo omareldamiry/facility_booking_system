@@ -20,11 +20,20 @@ export class FacilityListComponent implements OnInit, OnDestroy{
 
     ngOnInit() {
         this.isLoading = true;
-        this.facilities = this.facilitiesService.getFacilities();
+        this.facilitiesService.getFacilities();
         this.facilitiesSub = this.facilitiesService.getFacilityUpdateListener()
         .subscribe(facilities => {
             this.isLoading = false;
-            this.facilities = facilities; 
+            this.facilities = facilities;
+            console.log(this.facilities);
+        });
+    }
+
+    onDelete(id: String) {
+        this.isLoading = true;
+        this.facilitiesService.deleteFacility(id)
+        .subscribe(() => {
+            this.facilitiesService.getFacilities();
         });
     }
 

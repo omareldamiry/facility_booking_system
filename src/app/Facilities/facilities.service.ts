@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Facility } from './facility.model';
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 const BACKEND_URL = environment.apiUrl + 'facilities/';
 
@@ -27,13 +28,21 @@ export class FacilitiesService {
         //     { id: null, name: 'Digitals Lab', seats: 20, isAvailable: false },
         // ];
 
-        this.http.get<{ message: String, facilities: Facility[] }>(BACKEND_URL)
-        .subscribe(responseData => {
-            this.facilities = responseData.facilities;
+        this.http.get<{ message: String, facilities: any }>(BACKEND_URL)
+        .pipe(map(facilityData => {
+            return { facilities: facilityData.facilities.map(facility => {
+                return {
+                    id: facility._id,
+                    name: facility.name,
+                    seats: facility.seats,
+                    isAvailable: facility.isAvailable
+                };
+            }) };
+        }))
+        .subscribe(transformedFacilitiesData => {
+            this.facilities = transformedFacilitiesData.facilities;
             this.facilitiesUpdated.next([...this.facilities]);
         });
-        
-        return this.facilities;
     }
 
     getFacilityUpdateListener() {
@@ -48,5 +57,10 @@ export class FacilitiesService {
             this.router.navigate(['/']);
         });
 
+    }
+
+    deleteFacility(id: String) {
+        
+        return this.http.delete(BACKEND_URL + id);
     }
 }

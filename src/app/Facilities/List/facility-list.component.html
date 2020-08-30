@@ -13,11 +13,11 @@
         <p class="danger" *ngIf="!facility.isAvailable">This facility is not available for booking.</p>
 
         <mat-action-row>
-            <button mat-button color="warn">DELETE</button>
+            <button mat-button color="warn" (click)="onDelete(facility.id)">DELETE</button>
         </mat-action-row>
     </mat-expansion-panel>
 </mat-accordion>
 <mat-card *ngIf="facilities.length == 0 || isLoading">
-    <mat-spinner [diameter]="25"></mat-spinner>
+    <mat-spinner [diameter]="25" *ngIf="facilities.length !== 0"></mat-spinner>
     <p class="empty" *ngIf="!isLoading">No facilities.</p>
 </mat-card>
