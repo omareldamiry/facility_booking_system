@@ -1,3 +1,7 @@
+.empty {
+    text-align: center;
+}
+
 .success {
     color: #00C853;
 }
