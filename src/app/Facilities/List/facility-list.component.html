@@ -1,6 +1,6 @@
 <h1>Facilities</h1>
 
-<mat-accordion *ngIf="facilities.length > 0">
+<mat-accordion [multi]="true" *ngIf="facilities.length > 0">
     <mat-expansion-panel *ngFor="let facility of facilities">
         <mat-expansion-panel-header>
             <mat-panel-title>
@@ -19,6 +19,6 @@
     </mat-expansion-panel>
 </mat-accordion>
 <mat-card *ngIf="facilities.length == 0 || isLoading">
-    <mat-spinner [diameter]="25" *ngIf="facilities.length !== 0"></mat-spinner>
+    <mat-spinner [diameter]="25"></mat-spinner>
     <p class="empty" *ngIf="!isLoading">No facilities.</p>
 </mat-card>

@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const Facility = require('./models/facility');
 // const User = require('./models/user');
 
+mongoose.set('useFindAndModify', false);
 mongoose.connect('mongodb+srv://mean:A0XR1RiJSutQjOvo@cluster0.psjry.mongodb.net/node-angular?retryWrites=true&w=majority', { useUnifiedTopology: true, useNewUrlParser: true })
 .then(() => {
     console.log('Connection succeeded!');
