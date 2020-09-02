@@ -7,6 +7,7 @@ const Facility = require('./models/facility');
 const User = require('./models/user');
 
 mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 mongoose.connect('mongodb+srv://mean:A0XR1RiJSutQjOvo@cluster0.psjry.mongodb.net/node-angular?retryWrites=true&w=majority', { useUnifiedTopology: true, useNewUrlParser: true })
 .then(() => {
     console.log('Connection succeeded!');
@@ -44,6 +45,25 @@ app.get('/api/facilities', (req, res) => {
         res.status(200).json({
             message: 'Fetched facilities sucessfully',
             facilities: document
+        });
+    });
+});
+
+//? Getting facility by ID
+app.get('/api/facilities/:id', (req, res) => {
+    const id = req.params.id;
+
+    Facility.findById(id)
+    .then(facility => {
+        if (!facility) {
+            return res.status(404).json({
+                message: 'Facility not found'
+            });
+        }
+
+        res.status(200).json({
+            message: 'Fetched facility succesfullty',
+            facility
         });
     });
 });

@@ -8,13 +8,8 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <p>This facility has <b>{{ facility.seats }}</b> seats.</p>
-        <p class="success" *ngIf="facility.isAvailable">This facility is available for booking.</p>
-        <p class="danger" *ngIf="!facility.isAvailable">This facility is not available for booking.</p>
-
         <mat-action-row>
-            <button mat-button color="warn" (click)="onDelete(facility.id)">DELETE</button>
-            <button mat-button (click)="onToggle(facility.id, !facility.isAvailable)">TOGGLE</button>
+            <button mat-button color="primary" (click)="onView(facility)">VIEW DETAILS</button>
         </mat-action-row>
     </mat-expansion-panel>
 </mat-accordion>

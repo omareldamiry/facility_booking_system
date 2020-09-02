@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { Facility } from '../facility.model';
 import { FacilitiesService } from '../facilities.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-facility-list',
@@ -16,14 +17,15 @@ export class FacilityListComponent implements OnInit, OnDestroy{
     private facilitiesSub: Subscription;
 
     constructor(
-        private facilitiesService: FacilitiesService
+        private facilitiesService: FacilitiesService,
+        private router: Router
     ) {}
 
     ngOnInit() {
         this.isLoading = true;
         this.facilitiesService.getFacilities();
 
-        this.facilitiesSub = this.facilitiesService.getFacilityUpdateListener()
+        this.facilitiesSub = this.facilitiesService.getFacilitiesUpdateListener()
         .subscribe(facilities => {
             this.isLoading = false;
             this.facilities = facilities;
@@ -31,18 +33,8 @@ export class FacilityListComponent implements OnInit, OnDestroy{
         });
     }
 
-    onDelete(id: String) {
-        this.isLoading = true;
-        this.facilitiesService.deleteFacility(id)
-        .subscribe(() => {
-            this.facilitiesService.getFacilities();
-        });
-    }
-
-    onToggle(id: string, avail: boolean) {
-        this.facilities.find(value => value.id == id)
-        .isAvailable = avail;        
-        this.facilitiesService.setAvailability(id, avail);
+    onView(facility: Facility) {
+        this.router.navigate(['/facility/view'], { queryParams: { facility: facility.id } });
     }
 
     ngOnDestroy() {

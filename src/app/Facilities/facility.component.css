@@ -1,0 +1,18 @@
+mat-spinner {
+    margin: auto;
+}
+
+mat-card {
+    margin: auto;
+    margin-top: 10rem;
+    width: 20rem;
+    text-align: center;
+}
+
+.success {
+    color: #00C853;
+}
+
+.danger {
+    color: #C62828;
+}

@@ -12,6 +12,7 @@ import { LoginComponent } from './Users/Login/login.component';
 import { SignupComponent } from './Users/Signup/signup.component';
 import { FacilityCreateComponent } from './Facilities/Creation/facility-create.component';
 import { FacilityListComponent } from './Facilities/List/facility-list.component';
+import { FacilityComponent } from './Facilities/facility.component';
 
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -29,6 +30,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     SignupComponent,
     FacilityCreateComponent,
     FacilityListComponent,
+    FacilityComponent,
   ],
   
   imports: [

@@ -11,7 +11,9 @@ const BACKEND_URL = environment.apiUrl + 'facilities/';
 
 @Injectable({providedIn: 'root'})
 export class FacilitiesService {
+    private facility: Facility;
     private facilities: Facility[] = [];
+    private facilityUpdated = new Subject<Facility>();
     private facilitiesUpdated = new Subject<Facility[]>();
     
     constructor(
@@ -45,8 +47,30 @@ export class FacilitiesService {
         });
     }
 
-    getFacilityUpdateListener() {
+    getFacility(id: string) {
+        this.http.get<{ message: string, facility: any }>(BACKEND_URL + id)
+        .pipe(map(responseData => {
+            return { facility:  {
+                    id: responseData.facility._id,
+                    name: responseData.facility.name,
+                    seats: responseData.facility.seats,
+                    isAvailable: responseData.facility.isAvailable
+                }
+            };
+        }
+        ))
+        .subscribe(transformedResponseData => {
+            this.facility = transformedResponseData.facility;
+            this.facilityUpdated.next({...this.facility});
+        });
+    }
+
+    getFacilitiesUpdateListener() {
         return this.facilitiesUpdated.asObservable();
+    }
+
+    getFacilityUpdateListener() {
+        return this.facilityUpdated.asObservable();
     }
     
     addFacility(facility: Facility) {
