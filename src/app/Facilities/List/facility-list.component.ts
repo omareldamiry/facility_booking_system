@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { Facility } from '../facility.model';
 import { FacilitiesService } from '../facilities.service';
-import { Subscription, timer } from 'rxjs';
 
 @Component({
     selector: 'app-facility-list',
@@ -21,6 +22,7 @@ export class FacilityListComponent implements OnInit, OnDestroy{
     ngOnInit() {
         this.isLoading = true;
         this.facilitiesService.getFacilities();
+
         this.facilitiesSub = this.facilitiesService.getFacilityUpdateListener()
         .subscribe(facilities => {
             this.isLoading = false;

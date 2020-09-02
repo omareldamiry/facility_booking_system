@@ -2,13 +2,13 @@
     <span><a  routerLink="/">{{ title }}</a></span>
     <span class="spacer"></span>
     <ul>
-        <li>
+        <li *ngIf="isAuthenticated">
             <a mat-stroked-button routerLink="/facility/create" routerLinkActive="mat-accent">Add Facility</a>
         </li>
-        <li>
+        <li *ngIf="!isAuthenticated">
             <a mat-stroked-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
         </li>
-        <li>
+        <li *ngIf="!isAuthenticated">
             <a mat-stroked-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
         </li>
     </ul>

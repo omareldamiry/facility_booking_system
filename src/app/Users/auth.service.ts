@@ -24,12 +24,18 @@ export class AuthService {
             password
         };
 
-        this.http.post<{ message: string, userId: string }>(BACKEND_URL, authData)
+        this.http.post<{ message: string, userId: string }>(BACKEND_URL + 'login', authData)
         .subscribe(responseData => {
             this.userId = responseData.userId;
             this.authStatusListener.next(true);
 
             this.router.navigate(['/']);
+        }, error => {
+            this.authStatusListener.next(false);
         });
+    }
+
+    getAuthStatusListener() {
+        return this.authStatusListener.asObservable();
     }
 }
