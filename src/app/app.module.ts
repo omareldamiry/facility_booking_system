@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './Header/header.component';
 import { LoginComponent } from './Users/Login/login.component';
+import { SignupComponent } from './Users/Signup/signup.component';
 import { FacilityCreateComponent } from './Facilities/Creation/facility-create.component';
 import { FacilityListComponent } from './Facilities/List/facility-list.component';
 
@@ -25,6 +26,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     AppComponent,
     HeaderComponent,
     LoginComponent,
+    SignupComponent,
     FacilityCreateComponent,
     FacilityListComponent,
   ],

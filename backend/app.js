@@ -1,9 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 
 const Facility = require('./models/facility');
-// const User = require('./models/user');
+const User = require('./models/user');
 
 mongoose.set('useFindAndModify', false);
 mongoose.connect('mongodb+srv://mean:A0XR1RiJSutQjOvo@cluster0.psjry.mongodb.net/node-angular?retryWrites=true&w=majority', { useUnifiedTopology: true, useNewUrlParser: true })
@@ -91,6 +92,61 @@ app.delete('/api/facilities/:id', (req, res) => {
     .then(result => {
         res.status(200).json({
             message: 'Facility deleted!'
+        });
+    });
+});
+
+// *************************************************** //
+// ******************** User Routes ****************** //
+// *************************************************** //
+
+//? Signup
+app.post('/api/user/signup', (req, res) => {
+    bcrypt.hash(req.body.password, 10)
+    .then(hash => {
+        const user = new User({
+            email: req.body.email,
+            password: hash
+        });
+
+        user.save()
+        .then(result => {
+            res.status(201).json({
+                message: 'User signup successful',
+                result: result
+            });
+        });
+    });
+});
+
+//? Login
+app.post('/api/user/login', (req, res) => {
+    let fetchedUser;
+
+    User.findOne({
+        email: req.body.email
+    })
+    .then(user => {
+        if(!user) {
+            return res.status(401).json({
+                message: 'Authentication failed'
+            });
+        }
+
+        fetchedUser = user;
+
+        return bcrypt.compare(req.body.password, user.password);
+    })
+    .then(result => {
+        if(!result) {
+            return res.status(401).json({
+                message: 'Authentication failed'
+            });
+        }
+
+        res.status(200).json({
+            message: 'Authentication successful',
+            userId: fetchedUser._id
         });
     });
 });
