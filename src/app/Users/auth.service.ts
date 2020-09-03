@@ -35,6 +35,22 @@ export class AuthService {
         });
     }
 
+    signup(email: string, password: string) {
+        const authData: User = {
+            email,
+            password
+        };
+
+        this.http.post(BACKEND_URL + 'signup', authData)
+        .subscribe(() => {
+            this.router.navigate(['/']);
+        }, error => {
+            // Placement of this line does not make any sense in terms of error handling
+            this.authStatusListener.next(false);
+        });
+
+    }
+
     getAuthStatusListener() {
         return this.authStatusListener.asObservable();
     }

@@ -2,6 +2,7 @@
     <mat-card-title>
         {{ facility.name }}
     </mat-card-title>
+    <hr>
     <mat-card-content>
         <p>This facility has <b>{{ facility.seats }}</b> seats.</p>
         <p class="success" *ngIf="facility.isAvailable">This facility is available for booking.</p>

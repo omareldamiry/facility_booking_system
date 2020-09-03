@@ -9,6 +9,11 @@ mat-card {
     text-align: center;
 }
 
+hr {
+    border-top: 1px solid #673ab7;
+    margin: 1rem 0;
+}
+
 .success {
     color: #00C853;
 }
