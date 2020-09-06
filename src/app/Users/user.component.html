@@ -1,4 +1,4 @@
-<mat-card *ngIf="user">
+<mat-card *ngIf="user && userIsAuthenticated">
     <mat-card-title>
         {{ user.username }}
     </mat-card-title>

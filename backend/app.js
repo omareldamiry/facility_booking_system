@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const Facility = require('./models/facility');
 const User = require('./models/user');
@@ -164,8 +165,16 @@ app.post('/api/user/login', (req, res) => {
             });
         }
 
+        const token = jwt.sign(
+            { userId: fetchedUser._id, email: fetchedUser.email },
+            'secret_but_should_be_even_longer_than_this',
+            { expiresIn: '2h' }
+            );
+
         res.status(200).json({
             message: 'Authentication successful',
+            token: token,
+            expiresIn: 3600 * 2,
             userId: fetchedUser._id
         });
     });

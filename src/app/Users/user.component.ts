@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from './auth.service';
 import { User } from './user.model';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-user',
@@ -8,14 +9,23 @@ import { User } from './user.model';
     styleUrls: ['./user.component.css']
 })
 
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
     user: User;
+    userIsAuthenticated = false;
+    private authStatusSub: Subscription;
 
     constructor(
         private authService: AuthService
     ) {}
 
     ngOnInit() {
-        
+        this.authStatusSub = this.authService.getAuthStatusListener()
+        .subscribe(isAuthenticated => {
+            this.userIsAuthenticated = isAuthenticated;
+        });
+    }
+
+    ngOnDestroy() {
+        this.authStatusSub.unsubscribe();
     }
 }
