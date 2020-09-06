@@ -1,0 +1,17 @@
+<mat-card *ngIf="user">
+    <mat-card-title>
+        {{ user.username }}
+    </mat-card-title>
+    <mat-card-content>
+        <P>{{ user.email }}</P>
+        <P>{{ user.birthdate }}</P>
+        <P>{{ user.occupation }}</P>
+        <P>{{ user.birthdate }}</P>
+        <P>{{ user.bio }}</P>
+        <P>[SOCIALMEDIA]</P>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button color="accent">EDIT</button>
+        <button mat-button color="warn">DELETE ACCOUNT</button>
+    </mat-card-actions>
+</mat-card>

@@ -5,6 +5,7 @@ import { FacilityListComponent } from './Facilities/List/facility-list.component
 import { LoginComponent } from './Users/Login/login.component';
 import { SignupComponent } from './Users/Signup/signup.component';
 import { FacilityComponent } from './Facilities/facility.component';
+import { UserComponent } from './Users/user.component';
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import { FacilityComponent } from './Facilities/facility.component';
             { path: 'facility/create', component: FacilityCreateComponent },
             { path: 'facility/view', component: FacilityComponent },
             { path: 'login', component: LoginComponent },
-            { path: 'signup', component: SignupComponent }
+            { path: 'signup', component: SignupComponent },
+            { path: 'user', component: UserComponent }
         ])
     ],
 

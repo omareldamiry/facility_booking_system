@@ -5,11 +5,11 @@
     <hr>
     <mat-card-content>
         <p>This facility has <b>{{ facility.seats }}</b> seats.</p>
-        <p class="success" *ngIf="facility.isAvailable">This facility is available for booking.</p>
-        <p class="danger" *ngIf="!facility.isAvailable">This facility is not available for booking.</p>
+        <p class="success" *ngIf="facility.isAvailable">Available for booking.</p>
+        <p class="danger" *ngIf="!facility.isAvailable">Not available for booking.</p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button color="accent" (click)="onToggle(!facility.isAvailable)">TOGGLE</button>
+        <button mat-button color="primary" (click)="onToggle(!facility.isAvailable)">TOGGLE</button>
         <button mat-button color="warn" (click)="onDelete(facility.id)">DELETE</button>
     </mat-card-actions>
 </mat-card>

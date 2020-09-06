@@ -1,0 +1,13 @@
+mat-card {
+    margin: auto;
+    margin-top: 10rem;
+    width: 20rem;
+}
+
+mat-card-title {
+    text-align: center;
+}
+
+mat-card-actions {
+    text-align: end;
+}

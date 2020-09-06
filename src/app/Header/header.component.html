@@ -5,6 +5,9 @@
         <li *ngIf="isAuthenticated">
             <a mat-stroked-button routerLink="/facility/create" routerLinkActive="mat-accent">Add Facility</a>
         </li>
+        <li *ngIf="isAuthenticated">
+            <a mat-stroked-button routerLink="/user" routerLinkActive="mat-accent">Profile</a>
+        </li>
         <li *ngIf="!isAuthenticated">
             <a mat-stroked-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
         </li>

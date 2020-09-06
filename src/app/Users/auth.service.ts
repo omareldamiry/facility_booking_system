@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { User } from './user.model';
+import { AuthData } from './auth-data.model';
 
 import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
@@ -19,7 +19,7 @@ export class AuthService {
     ) {}
     
     login(email: string, password: string) {
-        const authData: User = {
+        const authData: AuthData = {
             email,
             password
         };
@@ -36,7 +36,7 @@ export class AuthService {
     }
 
     signup(email: string, password: string) {
-        const authData: User = {
+        const authData: AuthData = {
             email,
             password
         };
