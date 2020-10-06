@@ -15,7 +15,7 @@ import { UserComponent } from './Users/user.component';
             { path: 'facility/view', component: FacilityComponent },
             { path: 'login', component: LoginComponent },
             { path: 'signup', component: SignupComponent },
-            { path: 'user', component: UserComponent }
+            { path: 'profile', component: UserComponent }
         ])
     ],
 

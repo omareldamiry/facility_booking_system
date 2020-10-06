@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const Facility = require('./models/facility');
+const Auth = require('./models/auth');
 const User = require('./models/user');
 
 mongoose.set('useFindAndModify', false);
@@ -118,19 +119,19 @@ app.delete('/api/facilities/:id', (req, res) => {
 });
 
 // *************************************************** //
-// ******************** User Routes ****************** //
+// ******************** Auth Routes ****************** //
 // *************************************************** //
 
 //? Signup
 app.post('/api/user/signup', (req, res) => {
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
-        const user = new User({
+        const auth = new Auth({
             email: req.body.email,
             password: hash
         });
 
-        user.save()
+        auth.save()
         .then(result => {
             res.status(201).json({
                 message: 'User signup successful',
@@ -144,7 +145,7 @@ app.post('/api/user/signup', (req, res) => {
 app.post('/api/user/login', (req, res) => {
     let fetchedUser;
 
-    User.findOne({
+    Auth.findOne({
         email: req.body.email
     })
     .then(user => {
@@ -176,6 +177,47 @@ app.post('/api/user/login', (req, res) => {
             token: token,
             expiresIn: 3600 * 2,
             userId: fetchedUser._id
+        });
+    });
+});
+
+// *************************************************** //
+// ******************** User Routes ****************** //
+// *************************************************** //
+
+app.post('/api/user', (req, res) => {
+    const user = new User({
+        email: req.body.email,
+        username: req.body.username,
+        birthdate: new Date(req.body.birthdate),
+        occupation: req.body.occupation,
+        phone: req.body.phone,
+        bio: req.body.bio
+    });
+
+    user.save()
+    .then(result => {
+        res.status(200).json({
+            message: 'User data saved',
+            result: result
+        });
+    });
+});
+
+app.get('/api/user', (req, res) => {
+
+    User.findOne({
+        email: req.body.email
+    }).then(user => {
+        if(!user) {
+            return res.status(401).json({
+                message: 'User data not found'
+            });
+        }
+
+        res.status(200).json({
+            message: 'User data fetched successfully',
+            user: user
         });
     });
 });

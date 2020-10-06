@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { AuthData } from './auth-data.model';
+import { Subject } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { AuthData } from './auth-data.model';
+import { User } from './user.model';
 
 const BACKEND_URL = environment.apiUrl + 'user/';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     private userId: string;
+    private user: User;
+    private signupEmail: string;
     private isAuthenticated = false;
     private token: string;
     private tokenTimer: any;
@@ -58,14 +61,30 @@ export class AuthService {
             password
         };
 
-        this.http.post(BACKEND_URL + 'signup', authData)
-            .subscribe(() => {
-                this.router.navigate(['/']);
+        this.http.post<{ result: any }>(BACKEND_URL + 'signup', authData)
+            .subscribe(response => {
+                console.log(response);
+                this.router.navigate(['/profile'], { queryParams: { mode: 'create', email: response.result.email } });
             }, error => {
                 // Placement of this line does not make any sense in terms of error handling
                 this.authStatusListener.next(false);
             });
 
+    }
+
+    createUser(user: User) {
+        this.http.post<{ result: any }>(BACKEND_URL, user)
+        .subscribe(response => {
+            this.signupEmail = response.result.email;
+            // this.user = this.getUser();
+        });
+    }
+
+    getUser() {
+        this.http.get(BACKEND_URL + this.signupEmail)
+        .subscribe(result => {
+            return result;
+        });
     }
 
     logout() {

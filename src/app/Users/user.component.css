@@ -11,3 +11,7 @@ mat-card-title {
 mat-card-actions {
     text-align: end;
 }
+
+mat-form-field {
+    width: 100%;
+}
